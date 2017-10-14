@@ -4,4 +4,6 @@ Auth class
 
 
 class Auth(object):
-    pass
+
+    def check_user(self, login, password):
+        return 1

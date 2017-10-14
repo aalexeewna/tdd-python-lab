@@ -4,7 +4,19 @@ from app.auth import Auth
 
 class TddPythonLab(unittest.TestCase):
     def setUp(self):
-        self.calc = Auth()
+        self.auth = Auth()
+
+    def test_auth_success(self):
+        result = self.auth.check_user(login='user', password='password')
+        self.assertEqual(1, result)
+
+    def test_auth_error_user_not_found(self):
+        result = self.auth.check_user(login='user', password='password')
+        self.assertEqual(2, result)
+
+    def test_auth_error_password_error(self):
+        result = self.auth.check_user(login='user', password='password')
+        self.assertEqual(3, result)
 
 
 if __name__ == '__main__':
