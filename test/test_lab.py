@@ -42,6 +42,15 @@ class TddPythonLab(unittest.TestCase):
         result = self.auth.del_user(login='user_new', password='password_failed')
         self.assertEqual(1, result)
 
+    def test_delete_user_failed_login_is_null(self):
+        result = self.auth.del_user(login=None, password='password2')
+        self.assertEqual(2, result)
+
+    def test_delete_user_failed_password_is_null(self):
+        result = self.auth.del_user(login='user_new', password=None)
+        self.assertEqual(2, result)
+
+
 
 if __name__ == '__main__':
     unittest.main()
