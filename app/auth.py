@@ -37,15 +37,19 @@ class Auth(object):
             file = open('app/users.txt', 'r')
 
             if_exist = False
-            l = 0
+            users = []
 
             for line in file:
                 user = line.split('/')
-                if login == user[0]:
+                if login == user[0] and self.get_md5(password) == user[1]:
                     if_exist = True
-                    break
+                else:
+                    users.append(line)
 
             if if_exist:
+                file.close()
+                file = open('app/users.txt', 'w')
+                file.writelines(users)
                 file.close()
                 return 0
             else:
