@@ -51,6 +51,5 @@ class TddPythonLab(unittest.TestCase):
         self.assertEqual(2, result)
 
 
-
 if __name__ == '__main__':
     unittest.main()

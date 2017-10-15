@@ -36,31 +36,34 @@ class Auth(object):
             return 2
 
     def del_user(self, login, password):
-        try:
-            file = open('app/users.txt', 'r')
+        if login is not None and password is not None:
+            try:
+                file = open('app/users.txt', 'r')
 
-            if_exist = False
-            users = []
+                if_exist = False
+                users = []
 
-            for line in file:
-                user = line.split('/')
-                if login == user[0] and self.get_md5(password) == user[1]:
-                    if_exist = True
+                for line in file:
+                    user = line.split('/')
+                    if login == user[0] and self.get_md5(password) == user[1]:
+                        if_exist = True
+                    else:
+                        users.append(line)
+
+                if if_exist:
+                    file.close()
+                    file = open('app/users.txt', 'w')
+                    file.writelines(users)
+                    file.close()
+                    return 0
                 else:
-                    users.append(line)
-
-            if if_exist:
-                file.close()
-                file = open('app/users.txt', 'w')
-                file.writelines(users)
-                file.close()
-                return 0
-            else:
-                file.close()
-                return 1
-        except IOError as e:
-            print("Invalid file.", e)
-            sys.exit()
+                    file.close()
+                    return 1
+            except IOError as e:
+                print("Invalid file.", e)
+                sys.exit()
+        else:
+            return 2
 
     def check_user(self, login, password):
         try:
