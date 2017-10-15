@@ -28,11 +28,11 @@ class TddPythonLab(unittest.TestCase):
 
     def test_create_user_failed_login_is_null(self):
         result = self.auth.add_user(login=None, password='password_new')
-        self.assertEqual(1, result)
+        self.assertEqual(2, result)
 
     def test_create_user_failed_password_is_null(self):
         result = self.auth.add_user(login='user_new', password=None)
-        self.assertEqual(1, result)
+        self.assertEqual(2, result)
 
     def test_delete_user_success(self):
         result = self.auth.del_user(login='user2', password='password2')
