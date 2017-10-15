@@ -13,11 +13,12 @@ class Auth(object):
 
                 if_exist = False
 
-                for line in file:
-                    user = line.split('/')
-                    if login == user[0]:
-                        if_exist = True
-                        break
+                if file is not None:
+                    for line in file:
+                        user = line.split('/')
+                        if login == user[0]:
+                            if_exist = True
+                            break
 
                 if if_exist:
                     file.close()
@@ -43,12 +44,13 @@ class Auth(object):
                 if_exist = False
                 users = []
 
-                for line in file:
-                    user = line.split('/')
-                    if login == user[0] and self.get_md5(password) == user[1]:
-                        if_exist = True
-                    else:
-                        users.append(line)
+                if file is not None:
+                    for line in file:
+                        user = line.split('/')
+                        if login == user[0] and self.get_md5(password) == user[1]:
+                            if_exist = True
+                        else:
+                            users.append(line)
 
                 if if_exist:
                     file.close()
